@@ -1,0 +1,63 @@
+.address-page__content {
+    margin: 0 auto;
+    padding: 30px 15px;
+    width: 680px;
+    height: 678px;
+}
+
+.address-form__heading {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.form {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form__group {
+    margin-bottom: 20px;
+}
+
+.form__group-title {
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}
+
+.form__input--text input {
+    padding: 10px;
+    width: 100%;
+    height: 45px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    appearance: none;
+}
+
+.form__button {
+    margin-top: 50px;
+    background: #FF5555;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.form__button-submit {
+    height: 65.25px;
+    border: none;
+    background: #FF5555;
+    color: #fff;
+    cursor: pointer;
+    font-size: 26px;
+    font-weight: bold;
+}

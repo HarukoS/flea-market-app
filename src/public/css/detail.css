@@ -1,0 +1,306 @@
+.detail-page {
+    padding: 80px 66px;
+}
+
+.item-content {
+    display: flex;
+    gap: 10%;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1431px) {
+    .item-content {
+        display: flex;
+        gap: 5%;
+        flex-wrap: wrap;
+    }
+}
+
+.item-image-wrapper {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.item-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sold-ribbon {
+    position: absolute;
+    top: 10px;
+    left: -30px;
+    width: 100px;
+    text-align: center;
+    background: #e60012;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 0;
+    transform: rotate(-45deg);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.item-info {
+    flex: 1;
+    max-width: 600px;
+}
+
+.item-name {
+    font-size: 45px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.brand-name {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.price {
+    display: flex;
+    align-items: flex-end;
+    height: auto;
+}
+
+.price-yen,
+.price-tax {
+    font-size: 30px;
+}
+
+.price-number {
+    font-size: 45px;
+}
+
+.price-yen,
+.price-number,
+.price-tax {
+    line-height: normal;
+    margin: 0;
+}
+
+.icons {
+    display: flex;
+    margin-top: 10px;
+}
+
+.icons__star,
+.icons__comment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    margin-left: 10px;
+}
+
+.like-form {
+    height: 20px;
+}
+
+.star__btn {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.star__btn:hover {
+    cursor: pointer;
+}
+
+.icon__img {
+    display: block;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.like-number,
+.comment-number {
+    text-align: center;
+    min-width: 100%;
+}
+
+.purchase-btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff5555;
+    color: white;
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    width: 570px;
+    height: 56px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+.purchase-btn-submit:hover:not(:disabled) {
+    background-color: red;
+}
+
+.purchase-btn-submit:disabled,
+.purchase-btn-submit:disabled:hover {
+    background-color: #D9D9D9;
+    cursor: not-allowed;
+}
+
+.purchase-btn-submit a {
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-description_title,
+.item-details_title {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.item-description_text {
+    font-size: 24px;
+}
+
+.item-comments_title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #5F5F5F;
+}
+
+.item-details_category,
+.item-details_condition {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    margin-right: 50px;
+}
+
+.item-description,
+.item-details,
+.item-comments {
+    margin-bottom: 50px;
+}
+
+.category {
+    display: inline-block;
+    background-color: #D9D9D9;
+    padding: 4px 20px;
+    border-radius: 15px;
+    margin-right: 15px;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.condition {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.comment {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.comment-user_image {
+    width: 70px;
+    height: 70px;
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 70px;
+}
+
+.comment-user_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.comment-user_name {
+    font-size: 30px;
+    font-weight: bold;
+    align-self: center;
+}
+
+.comment-text {
+    background-color: #E5E5E5;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    flex-basis: 100%;
+    margin-top: 6px;
+}
+
+.comment-text,
+.comment-input {
+    max-width: 570px;
+}
+
+.comment-form {
+    margin-top: 50px;
+}
+
+.comment-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.comment-form textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #E5E5E5;
+    resize: vertical;
+}
+
+.comment-btn-submit {
+    background-color: #ff5555;
+    color: white;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    width: 570px;
+    height: 56px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+.comment-btn-submit:hover {
+    background-color: red;
+}
+
+.error-text {
+    color: red;
+    padding-left: 0;
+}
+
+li {
+    list-style: none;
+}
