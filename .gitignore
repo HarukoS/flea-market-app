@@ -1,0 +1,9 @@
+# Laravel vendor & environment files
+/vendor/
+/node_modules/
+/.env
+/storage/
+
+# Docker MySQL data (ignore all database files)
+docker/mysql/data/
+
