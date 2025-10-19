@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-<main class="purchase-page">
-    <form id="purchase-form" action="{{ route('purchase') }}" method="post">
+<div class="purchase-page">
+    <form id="purchase-form" action="{{ route('purchase.pre', ['item' => $item->id]) }}" method="POST">
         @csrf
         <div class="purchase-detail">
             <div class="page-left">
@@ -16,8 +16,8 @@
                         <img src="{{ asset('storage/' . $item->item_image) }}" alt="{{ $item->item_name }}">
                     </div>
                     <div class="item-info">
-                        <div class="item-name">{{ $item->item_name }}</div>
-                        <div class="item-price">¥{{ number_format($item->price) }}
+                        <div class="item-info__name">{{ $item->item_name }}</div>
+                        <div class="item-info__price">¥{{ number_format($item->price) }}
                         </div>
                     </div>
                 </div>
@@ -79,29 +79,9 @@
             </div>
         </div>
     </form>
-</main>
+</div>
 @endsection
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const paymentSelect = document.getElementById("paymentOption");
-        const paymentSummary = document.getElementById("paymentSummary");
-        const form = document.getElementById("purchase-form");
-
-        // 支払い方法選択の表示更新
-        paymentSelect.addEventListener("change", () => {
-            const selected = paymentSelect.value;
-            paymentSummary.textContent = selected ? selected : "選択してください";
-        });
-
-        // フォーム送信時に Stripe ページへ
-        form.addEventListener("submit", function(e) {
-            const paymentMethod = paymentSelect.value;
-
-            e.preventDefault(); // フォーム送信を止める
-
-            const itemId = {{ $item->id }};
-            window.location.href = `/payment/create/${itemId}?method=${encodeURIComponent(paymentMethod)}`;
-        });
-    });
-</script>
+@section('js')
+<script src="{{ asset('js/purchase.js') }}"></script>
+@endsection

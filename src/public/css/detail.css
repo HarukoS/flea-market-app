@@ -69,18 +69,15 @@
     height: auto;
 }
 
-.price-yen,
-.price-tax {
+.price__yen,
+.price__tax {
     font-size: 30px;
+    line-height: normal;
+    margin: 0;
 }
 
-.price-number {
+.price__number {
     font-size: 45px;
-}
-
-.price-yen,
-.price-number,
-.price-tax {
     line-height: normal;
     margin: 0;
 }
@@ -164,24 +161,24 @@
     justify-content: center;
 }
 
-.item-description_title,
-.item-details_title {
+.item-description__title,
+.item-details__title {
     font-size: 36px;
     font-weight: bold;
 }
 
-.item-description_text {
+.item-description__text {
     font-size: 24px;
 }
 
-.item-comments_title {
+.item-comments__title {
     font-size: 36px;
     font-weight: bold;
     color: #5F5F5F;
 }
 
-.item-details_category,
-.item-details_condition {
+.item-details__category,
+.item-details__condition {
     font-size: 24px;
     font-weight: bold;
     display: flex;

@@ -18,20 +18,16 @@ $tab = session('tab', 'default_tab');
 
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">商品画像</span>
+                <span class="form__label-item">商品画像</span>
             </div>
             <div class="item-image-area">
-                <!-- 左：プレビュー -->
                 <div class="preview-wrapper">
                     <div class="image-preview" id="imagePreview"></div>
                 </div>
-
-                <!-- 右：ボタンと input -->
                 <div class="button-wrapper">
                     <input type="file" id="itemImage" name="item_image" accept="image/*" hidden>
                     <button type="button" class="upload-button" id="uploadButton">画像を選択する</button>
                 </div>
-
             </div>
             <div class="form__error">
                 @error('item_image')
@@ -43,7 +39,7 @@ $tab = session('tab', 'default_tab');
         <h3>商品の詳細</h3>
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">カテゴリー</span>
+                <span class="form__label-item">カテゴリー</span>
             </div>
             <div class="category-list">
                 @foreach($categories as $category)
@@ -53,7 +49,6 @@ $tab = session('tab', 'default_tab');
                     data-category-id="{{ $category->id }}">
                     {{ $category->category_name }}
                 </button>
-                {{-- 選択状態を保持するhidden input --}}
                 <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="hidden-category">
                 @endforeach
             </div>
@@ -65,10 +60,10 @@ $tab = session('tab', 'default_tab');
         </div>
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">商品の状態</span>
+                <span class="form__label-item">商品の状態</span>
             </div>
             <div class="form__group-content">
-                <div class="form__select--option">
+                <div class="form__select-option">
                     <select name="condition">
                         <option value="" selected disabled>選択してください</option>
                         @foreach($conditions as $condition)
@@ -86,10 +81,10 @@ $tab = session('tab', 'default_tab');
         <h3>商品名と説明</h3>
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">商品名</span>
+                <span class="form__label-item">商品名</span>
             </div>
             <div class="form__group-content">
-                <div class="form__input--text">
+                <div class="form__input-text">
                     <input type="text" name="item_name">
                 </div>
                 <div class="form__error">
@@ -101,20 +96,20 @@ $tab = session('tab', 'default_tab');
         </div>
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">ブランド名</span>
+                <span class="form__label-item">ブランド名</span>
             </div>
             <div class="form__group-content">
-                <div class="form__input--text">
+                <div class="form__input-text">
                     <input type="text" name="brand_name">
                 </div>
             </div>
         </div>
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">商品の説明</span>
+                <span class="form__label-item">商品の説明</span>
             </div>
             <div class="form__group-content">
-                <div class="form__input--text">
+                <div class="form__input-text">
                     <textarea name="description" rows="5"></textarea>
                 </div>
                 <div class="form__error">
@@ -126,10 +121,10 @@ $tab = session('tab', 'default_tab');
         </div>
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">販売価格</span>
+                <span class="form__label-item">販売価格</span>
             </div>
             <div class="form__group-content">
-                <div class="form__input--text">
+                <div class="form__input-text">
                     <span class="currency">¥</span>
                     <input type="text" name="price">
                 </div>
@@ -170,12 +165,10 @@ $tab = session('tab', 'default_tab');
         const preview = document.getElementById("imagePreview");
         const uploadBtn = document.getElementById("uploadButton");
 
-        // ボタンを押したら input をクリック
         uploadBtn.addEventListener("click", () => {
             fileInput.click();
         });
 
-        // ファイル選択後にプレビュー表示
         fileInput.addEventListener("change", (e) => {
             const file = e.target.files[0];
             if (!file) return;

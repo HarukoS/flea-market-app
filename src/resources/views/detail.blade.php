@@ -5,25 +5,22 @@
 @endsection
 
 @section('content')
-<main class="detail-page">
+<div class="detail-page">
     <div class="item-content">
-
         <div class="item-image-wrapper">
             <img src="{{ asset('storage/' . $item->item_image) }}" alt="{{ $item->item_name }}">
             @if($item->is_sold)
             <div class="sold-ribbon">SOLD</div>
             @endif
         </div>
-
         <div class="item-info">
             <div class="item-name">{{ $item->item_name }}</div>
             <p class="brand-name">{{ $item->brand_name }}</p>
             <div class="price">
-                <p class="price-yen">¥</p>
-                <p class="price-number">{{ number_format($item->price) }}</p>
-                <p class="price-tax">（税込）</p>
+                <p class="price__yen">¥</p>
+                <p class="price__number">{{ number_format($item->price) }}</p>
+                <p class="price__tax">（税込）</p>
             </div>
-
             <div class="icons">
                 <div class="icons__star">
                     <form class="like-form" action="/like" method="post">
@@ -38,7 +35,6 @@
                     <span class="comment-number">{{ $item->comments->count() }}</span>
                 </div>
             </div>
-
             @if(!$item->is_sold)
             <div class="purchase-btn-submit">
                 <a href="{{ route('purchase.page', ['item' => $item->id]) }}">購入手続きへ</a>
@@ -48,28 +44,25 @@
                 <button class="purchase-btn-submit" type="button" disabled>SOLD</button>
             </div>
             @endif
-
             <div class="item-description">
-                <div class="item-description_title">商品説明</div>
-                <p class="item-description_text">{{ $item->description }}</p>
+                <div class="item-description__title">商品説明</div>
+                <p class="item-description__text">{{ $item->description }}</p>
             </div>
-
             <div class="item-details">
-                <div class="item-details_title">商品の情報</div>
-                <p class="item-details_category">
+                <div class="item-details__title">商品の情報</div>
+                <p class="item-details__category">
                     <span class="label">カテゴリー</span>
                     @foreach($item->categories as $category)
                     <span class="category">{{ $category->category_name }}</span>
                     @endforeach
                 </p>
-                <p class="item-details_condition">
+                <p class="item-details__condition">
                     <span class="label">商品の状態</span>
                     <span class="condition">{{ $item->condition->condition_name }}</span>
                 </p>
             </div>
-
             <div class="item-comments">
-                <div class="item-comments_title">コメント ({{ $item->comments->count() }})</div>
+                <div class="item-comments__title">コメント ({{ $item->comments->count() }})</div>
                 <div class="comment">
                     @foreach($item->comments as $comment)
                     <div class="comment-user_image">
@@ -83,22 +76,22 @@
                     <div class="comment-text">{{ $comment->comment }}</div>
                     @endforeach
                 </div>
-
-                <form class="comment-form" action="/comment" method="post">
-                    @csrf
-                    <label class="comment-title" for="comment-input">商品へのコメント</label>
-                    <input type="hidden" name="item_id" value="{{ $item['id'] }}">
-                    <textarea class="comment-input" id="comment-input" name="comment" placeholder="コメントを入力"></textarea>
-                    <button class="comment-btn-submit">コメントを送信する</button>
-                </form>
-                @if (count($errors) > 0)
-                <ul class="error-text">
-                    @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-                @endif
             </div>
+            <form class="comment-form" action="/comment" method="post">
+                @csrf
+                <label class="comment-title" for="comment-input">商品へのコメント</label>
+                <input type="hidden" name="item_id" value="{{ $item['id'] }}">
+                <textarea class="comment-input" id="comment-input" name="comment" placeholder="コメントを入力"></textarea>
+                <button class="comment-btn-submit">コメントを送信する</button>
+            </form>
+            @if (count($errors) > 0)
+            <ul class="error-text">
+                @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+            @endif
         </div>
-</main>
+    </div>
+</div>
 @endsection

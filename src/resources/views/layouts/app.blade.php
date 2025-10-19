@@ -65,13 +65,14 @@
                 <li class="header-nav-item"><a href="/sell" class="header-nav__button-link">出品</a></li>
             </ul>
         </nav>
-
         @endif
     </header>
 
     <main>
         @yield('content')
     </main>
+
+    @yield('js')
 </body>
 
 </html>

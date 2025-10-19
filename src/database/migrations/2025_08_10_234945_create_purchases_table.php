@@ -20,7 +20,7 @@ class CreatePurchasesTable extends Migration
             $table->string('payment_method', 100);
             $table->string('postal_code', 8);
             $table->string('address', 255);
-            $table->string('building', 255);
+            $table->string('building', 255)->nullable();;
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

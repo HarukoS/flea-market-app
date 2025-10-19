@@ -6,7 +6,6 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class RegisteredUserController extends Controller
 {

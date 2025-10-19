@@ -9,6 +9,19 @@
     box-sizing: border-box;
 }
 
+@media screen and (max-width: 850px) {
+    .header-search__text {
+        margin-top: 4px;
+        font-size: 15px;
+        width: 100%;
+        height: 50px;
+        padding-left: 10px;
+        border-radius: 5px;
+        border: none;
+        box-sizing: border-box;
+    }
+}
+
 .purchase-page {
     padding: 80px 66px;
 }
@@ -44,13 +57,13 @@
     margin-left: 20px;
 }
 
-.item-name {
+.item-info__name {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.item-price {
+.item-info__price {
     display: flex;
     align-items: baseline;
     gap: 4px;
@@ -135,10 +148,26 @@
     font-size: 20px;
 }
 
+@media screen and (max-width: 850px) {
+    .summary-box .left {
+        text-align: center;
+        flex: 1;
+        font-size: 16px;
+    }
+}
+
 .summary-box .right {
     text-align: center;
     flex: 1;
     font-size: 24px;
+}
+
+@media screen and (max-width: 850px) {
+    .summary-box .right {
+        text-align: center;
+        flex: 1;
+        font-size: 16px;
+    }
 }
 
 .buy-btn {
@@ -152,6 +181,21 @@
     border-radius: 5px;
     cursor: pointer;
     margin: 20px 0;
+}
+
+@media screen and (max-width: 850px) {
+    .buy-btn {
+        background-color: #ff5555;
+        color: white;
+        border: none;
+        font-size: 26px;
+        font-weight: bold;
+        width: 250px;
+        height: 60px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 20px 0;
+    }
 }
 
 .buy-btn:hover {

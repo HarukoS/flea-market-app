@@ -85,7 +85,6 @@ $tab = session('tab', 'default_tab');
         </div>
     </form>
 </div>
-
 @endsection
 
 <script src="{{ asset('js/profile.js') }}"></script>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Item;
 use App\Models\Purchase;
 use App\Models\Category;
@@ -15,17 +14,25 @@ use App\Http\Requests\ExhibitionRequest;
 
 class UsersController extends Controller
 {
+    /**
+     * プロフィール編集画面表示
+     */
+    public function profile()
+    {
+        return view('profile');
+    }
+
+    /**
+     * プロフィール編集
+     */
     public function profileUpdate(ProfileRequest $request)
     {
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        // フォームデータを取得（image以外）
         $form = $request->except(['_token', 'image']);
 
-        // 画像がアップロードされた場合
         if ($request->hasFile('image')) {
-            // もし古い画像があれば削除
             if ($user->image) {
                 Storage::disk('public')->delete($user->image);
             }
@@ -34,14 +41,11 @@ class UsersController extends Controller
             $extension = $request->file('image')->getClientOriginalExtension();
             $filename = 'UserId' . $user->id . '_' . $user->email . '.' . $extension;
 
-            // 保存 (storage/app/public/profile_images に保存)
             $path = $request->file('image')->storeAs('profile_images', $filename, 'public');
 
-            // DBに保存するのは相対パス（例: profile_images/user_1.jpg）
             $form['image'] = $path;
         }
 
-        // ユーザー情報を更新
         $user->update($form);
 
         $search = $request->input('search');
@@ -49,17 +53,14 @@ class UsersController extends Controller
 
         $query = Item::query();
 
-        // 検索
         if (!empty($search)) {
             $query->where('item_name', 'like', "%{$search}%");
         }
 
-        // マイリストタブの場合
         if ($tab === 'mylists') {
             /** @var \App\Models\User|null $user */
             $user = Auth::user();
 
-            // ログインしていない、またはメール未認証なら空コレクション
             if (!$user || !$user->hasVerifiedEmail()) {
                 $items = collect();
                 return view('index', compact('items', 'search', 'tab'));
@@ -81,11 +82,14 @@ class UsersController extends Controller
         return view('index', compact('items', 'search', 'tab'));
     }
 
+    /**
+     * プロフィール画面表示
+     */
     public function mypage(Request $request)
     {
         $search = $request->input('search');
-        $page = $request->input('page', 'sell'); // pageで出品/購入を判定
-        $userId = Auth::id(); // ログインユーザーID
+        $page = $request->input('page', 'sell');
+        $userId = Auth::id();
 
         if ($page === 'sell') {
             $tab = 'myitem';
@@ -102,14 +106,12 @@ class UsersController extends Controller
             $query = Item::query();
         }
 
-        // 検索
         if (!empty($search)) {
             $query->where('item_name', 'like', "%{$search}%");
         }
 
         $items = $query->get();
 
-        // SOLD判定
         $items->each(function ($item) {
             $item->is_sold = Purchase::where('item_id', $item->id)->exists();
         });
@@ -117,6 +119,9 @@ class UsersController extends Controller
         return view('mypage', compact('items', 'search', 'tab'));
     }
 
+    /**
+     * 商品出品画面表示
+     */
     public function sellpage(Request $request)
     {
         $user = Auth::user();
@@ -125,6 +130,9 @@ class UsersController extends Controller
         return view('sell', compact('user', 'categories', 'conditions'));
     }
 
+    /**
+     * 商品出品
+     */
     public function sellitem(ExhibitionRequest $request)
     {
         $item = new Item();
@@ -136,10 +144,8 @@ class UsersController extends Controller
         $item->user_id = auth()->id();
         $item->save();
 
-        //カテゴリーを紐付け
         $item->categories()->sync($request->categories);
 
-        //カテゴリー英名を取得してファイル名用にまとめる
         $categoryNames = Category::whereIn('id', $request->categories)
             ->pluck('category_name_en')
             ->toArray();
@@ -152,17 +158,15 @@ class UsersController extends Controller
 
             $fileName = "ItemId{$item->id}_{$categoryNameStr}.{$extension}";
 
-            // publicディスクの items フォルダに保存
             $path = $file->storeAs('item_image', $fileName, 'public');
 
-            // パスをDBに保存（必要に応じて）
             $item->item_image = $path;
             $item->save();
         }
 
         $search = $request->input('search');
-        $page = $request->input('page', 'sell'); // pageで出品/購入を判定
-        $userId = Auth::id(); // ログインユーザーID
+        $page = $request->input('page', 'sell');
+        $userId = Auth::id();
 
         if ($page === 'sell') {
             $tab = 'myitem';
@@ -179,14 +183,12 @@ class UsersController extends Controller
             $query = Item::query();
         }
 
-        // 検索
         if (!empty($search)) {
             $query->where('item_name', 'like', "%{$search}%");
         }
 
         $items = $query->get();
 
-        // SOLD判定
         $items->each(function ($item) {
             $item->is_sold = Purchase::where('item_id', $item->id)->exists();
         });
