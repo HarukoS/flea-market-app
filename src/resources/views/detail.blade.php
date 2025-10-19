@@ -8,7 +8,7 @@
 <div class="detail-page">
     <div class="item-content">
         <div class="item-image-wrapper">
-            <img src="{{ asset('storage/' . $item->item_image) }}" alt="{{ $item->item_name }}">
+            <img src="{{ $item->image_url }}" alt="item_image">
             @if($item->is_sold)
             <div class="sold-ribbon">SOLD</div>
             @endif

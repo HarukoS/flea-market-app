@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Item extends Model
 {
@@ -49,10 +50,10 @@ class Item extends Model
         return $this->belongsTo(Condition::class);
     }
 
-    // // ログインユーザーがこのアイテムをLikeしているか判定
-    // public function isLikedBy($user)
-    // {
-    //     if (!$user) return false;
-    //     return $this->likes()->where('user_id', $user->id)->exists();
-    // }
+    public function getImageUrlAttribute()
+    {
+        return Str::startsWith($this->item_image, ['http://', 'https://'])
+            ? $this->item_image
+            : asset('storage/' . $this->item_image);
+    }
 }

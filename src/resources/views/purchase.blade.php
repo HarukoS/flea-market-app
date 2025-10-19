@@ -13,7 +13,7 @@
 
                 <div class="item-header">
                     <div class="item-image">
-                        <img src="{{ asset('storage/' . $item->item_image) }}" alt="{{ $item->item_name }}">
+                        <img src="{{ $item->image_url }}" alt="item_image">
                     </div>
                     <div class="item-info">
                         <div class="item-info__name">{{ $item->item_name }}</div>

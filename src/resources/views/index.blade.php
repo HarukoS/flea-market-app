@@ -24,7 +24,7 @@
         @foreach ($items as $item)
         <div class="item-card">
             <a href="{{ route('items.show', $item->id) }}" class="item-image-wrapper">
-                <img src="{{ asset('storage/' . $item->item_image) }}" alt="item_image">
+                <img src="{{ $item->image_url }}" alt="item_image">
                 @if($item->is_sold)
                 <div class="sold-ribbon">SOLD</div>
                 @endif
