@@ -128,13 +128,11 @@ class ItemController extends Controller
         $userId = Auth::id();
         $itemId = $request->item_id;
 
-        $comment = [
+        Comment::create([
             'comment' => $request->comment,
             'user_id' => $userId,
             'item_id' => $itemId,
-        ];
-
-        Comment::create($comment);
+        ]);
 
         $item = Item::with(['categories', 'condition', 'likes', 'comments'])->findOrFail($itemId);
 
@@ -143,6 +141,10 @@ class ItemController extends Controller
 
         // detail ページではタブはおすすめを既定値にする
         $tab = 'recommend';
+
+        // ← ここがポイント
+        // コメント後も購入済み判定をセット
+        $item->is_sold = Purchase::where('item_id', $item->id)->exists();
 
         return view('detail', compact('item', 'liked', 'tab'));
     }

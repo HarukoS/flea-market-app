@@ -16,8 +16,8 @@ class AddProfileToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('image')->nullable();
             $table->string('postal_code', 8)->nullable();
-            $table->string('address', 100)->nullable();
-            $table->string('building', 100)->nullable();
+            $table->string('address', 255)->nullable();
+            $table->string('building', 255)->nullable();
         });
     }
 

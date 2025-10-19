@@ -27,7 +27,7 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/', [ItemController::class, 'index']);
+Route::get('/', [ItemController::class, 'index'])->name('index');;
 Route::get('/item/{id}', [ItemController::class, 'detail'])->name('items.show');
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.detail');
 Route::get('/items', [ItemController::class, 'index'])->name('items.index');
@@ -119,10 +119,16 @@ Route::get('/purchase/address/{item}', [PurchaseController::class, 'editAddress'
 
 Route::post('/purchase/{item}/address/update', [PurchaseController::class, 'updateAddress'])->name('purchase.address.update');
 
-Route::post('/purchase', [PurchaseController::class, 'purchaseCreate'])->name('purchase');
+// Route::post('/purchase', [PurchaseController::class, 'purchaseCreate'])->name('purchase');
 
 Route::get('/mypage', [UsersController::class, 'mypage'])->name('mypage')->middleware(['auth', 'verified']);
 
 Route::get('/sell', [UsersController::class, 'sellpage'])->middleware(['auth', 'verified']);
 
 Route::post('/sellitem', [UsersController::class, 'sellitem'])->middleware(['auth', 'verified']);
+
+Route::prefix('payment')->name('payment.')->group(function () {
+    Route::get('/create/{item}', [PurchaseController::class, 'create'])->name('create'); // Stripe購入ページ表示
+    Route::post('/intent', [PurchaseController::class, 'createIntent'])->name('intent'); // Stripe用API
+    Route::post('/store', [PurchaseController::class, 'store'])->name('store'); // Stripe決済完了→DB登録
+});

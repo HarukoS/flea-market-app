@@ -6,7 +6,7 @@
 
 @section('content')
 <main class="purchase-page">
-    <form action="{{ route('purchase') }}" method="post">
+    <form id="purchase-form" action="{{ route('purchase') }}" method="post">
         @csrf
         <div class="purchase-detail">
             <div class="page-left">
@@ -86,10 +86,22 @@
     document.addEventListener("DOMContentLoaded", () => {
         const paymentSelect = document.getElementById("paymentOption");
         const paymentSummary = document.getElementById("paymentSummary");
+        const form = document.getElementById("purchase-form");
 
+        // 支払い方法選択の表示更新
         paymentSelect.addEventListener("change", () => {
             const selected = paymentSelect.value;
             paymentSummary.textContent = selected ? selected : "選択してください";
+        });
+
+        // フォーム送信時に Stripe ページへ
+        form.addEventListener("submit", function(e) {
+            const paymentMethod = paymentSelect.value;
+
+            e.preventDefault(); // フォーム送信を止める
+
+            const itemId = {{ $item->id }};
+            window.location.href = `/payment/create/${itemId}?method=${encodeURIComponent(paymentMethod)}`;
         });
     });
 </script>
